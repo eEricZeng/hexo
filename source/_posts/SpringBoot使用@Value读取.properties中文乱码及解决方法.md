@@ -48,9 +48,9 @@ private List<Document> loadDocuments(PropertySourceLoader loader, String name, R
     DocumentsCacheKey cacheKey = new DocumentsCacheKey(loader, resource);
     List<Document> documents = this.loadDocumentsCache.get(cacheKey);
     if (documents == null) {
-    	List<PropertySource<?>> loaded = loader.load(name, resource);
-    	documents = asDocuments(loaded);
-    	this.loadDocumentsCache.put(cacheKey, documents);
+        List<PropertySource<?>> loaded = loader.load(name, resource);
+        documents = asDocuments(loaded);
+        this.loadDocumentsCache.put(cacheKey, documents);
     }
     return documents;
 }
@@ -59,37 +59,36 @@ private List<Document> loadDocuments(PropertySourceLoader loader, String name, R
 ```java
 /*********属性文件加载接口**********/
 public interface PropertySourceLoader {
-	String[] getFileExtensions();
-	List<PropertySource<?>> load(String name, Resource resource) throws IOException;
+    String[] getFileExtensions();
+    List<PropertySource<?>> load(String name, Resource resource) throws IOException;
 }
 /*********properties文件加载实现**********/
 public class PropertiesPropertySourceLoader implements PropertySourceLoader {
 
-	private static final String XML_FILE_EXTENSION = ".xml";
+    private static final String XML_FILE_EXTENSION = ".xml";
 
-	@Override
-	public String[] getFileExtensions() {
-		return new String[] { "properties", "xml" };
-	}
+    @Override
+    public String[] getFileExtensions() {
+        return new String[] { "properties", "xml" };
+    }
 
-	@Override
-	public List<PropertySource<?>> load(String name, Resource resource)
-			throws IOException {
-		Map<String, ?> properties = loadProperties(resource);
-		if (properties.isEmpty()) {
-			return Collections.emptyList();
-		}
-		return Collections.singletonList(new OriginTrackedMapPropertySource(name, properties));
-	}
+    @Override
+    public List<PropertySource<?>> load(String name, Resource resource) throws IOException {
+        Map<String, ?> properties = loadProperties(resource);
+        if (properties.isEmpty()) {
+            return Collections.emptyList();
+        }
+      return Collections.singletonList(new OriginTrackedMapPropertySource(name, properties));
+  }
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private Map<String, ?> loadProperties(Resource resource) throws IOException {
-		String filename = resource.getFilename();
-		if (filename != null && filename.endsWith(XML_FILE_EXTENSION)) {
-			return (Map) PropertiesLoaderUtils.loadProperties(resource);
-		}
-		return new OriginTrackedPropertiesLoader(resource).load();
-	}
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  private Map<String, ?> loadProperties(Resource resource) throws IOException {
+      String filename = resource.getFilename();
+      if (filename != null && filename.endsWith(XML_FILE_EXTENSION)) {
+          return (Map) PropertiesLoaderUtils.loadProperties(resource);
+      }
+      return new OriginTrackedPropertiesLoader(resource).load();
+  }
 
 }
 ```
@@ -98,10 +97,10 @@ CharacterReader是OriginTrackedPropertiesLoader的内部静态类，而且只有
 ```java
 private static class CharacterReader implements Closeable {
     // 其他代码省略
-		CharacterReader(Resource resource) throws IOException {
-			this.reader = new LineNumberReader(new InputStreamReader(
-					resource.getInputStream(), StandardCharsets.ISO_8859_1));
-		}
+    CharacterReader(Resource resource) throws IOException {
+      this.reader = new LineNumberReader(new InputStreamReader(
+          resource.getInputStream(), StandardCharsets.ISO_8859_1));
+    }
     // 其他代码省略
 }
 ```
@@ -152,16 +151,16 @@ protected void init() throws IOException {
 采用@PropertySource(value="classpath:test.properties", encoding="UTF-8")方式读取配置文件可按照UTF-8的方式读取编码，而不是ISO-8859-1。@PropertySource配置的加载文件由ConfigurationClassParser.processPropertySource()进行解析，EncodedResource类决定最后由哪种编码格式加载文件，其方法如下：
 ```java
 public Reader getReader() throws IOException {
-		if (this.charset != null) {
-			return new InputStreamReader(this.resource.getInputStream(), this.charset);
-		}
-		else if (this.encoding != null) {
-			return new InputStreamReader(this.resource.getInputStream(), this.encoding);
-		}
-		else {
-			return new InputStreamReader(this.resource.getInputStream());
-		}
-	}
+    if (this.charset != null) {
+      return new InputStreamReader(this.resource.getInputStream(), this.charset);
+    }
+    else if (this.encoding != null) {
+      return new InputStreamReader(this.resource.getInputStream(), this.encoding);
+    }
+    else {
+      return new InputStreamReader(this.resource.getInputStream());
+    }
+  }
 ```
 所以，虽然都是.properties文件，但是编码格式却是不一样的。
 
