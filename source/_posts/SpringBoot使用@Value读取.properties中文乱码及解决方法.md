@@ -1,5 +1,17 @@
 ---
 title: SpringBoot使用@Value读取.properties中文乱码及解决方法
+date: 2019-06-29 21:36:00
+categories: SpringBoot
+tags:
+  - SpringBoot
+  - "@Value"
+  - properties
+  - utf-8
+  - 编码
+  - 乱码
+  - yaml
+  - yml
+  - spring
 ---
 ## 问题重现
 某不知名springboot小项目，application.properties文件：
