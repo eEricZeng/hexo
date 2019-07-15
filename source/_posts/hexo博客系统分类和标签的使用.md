@@ -8,6 +8,10 @@ tags:
   - categories
   - next
 ---
+## 版本说明
+* hexo v3.9.0
+* hexo-theme-next v7.1.2
+
 ## 写在前面
 以next主题为例，修改主题的配置文件themes/next/_config.yml，生效分类和标签：
 ```yml

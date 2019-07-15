@@ -7,11 +7,16 @@ tags:
   - search
   - 站内搜索
 ---
+### 版本说明
+* hexo v3.9.0
+* hexo-theme-next v7.1.2
 
+### 安装插件
 安装 hexo-generator-searchdb，在站点的根目录下执行以下命令：
 ```bash
 $ npm install hexo-generator-searchdb --save
 ```
+### 修改配置文件
 编辑__站点配置文件__，新增以下内容到任意位置：
 ```yml
 search:

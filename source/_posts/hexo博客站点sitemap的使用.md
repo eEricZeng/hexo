@@ -8,7 +8,12 @@ tags:
   - 检索
   - 搜索引擎
   - google search
+  - seo
 ---
+## 版本说明
+* hexo v3.9.0
+* hexo-theme-next v7.1.2
+
 ## 启用sitemap功能
 为了让博文被google或百度检索，需要使用hexo的sitemap功能。修改themes/next/_config.yml：
 ```yml
