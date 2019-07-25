@@ -18,4 +18,8 @@ tags:
 ### 访问/阅读统计
 {% post_link hexo添加阅读统计 %}
 ### 评论
-[gitment](https://github.com/imsun/gitment)
+~~[gitment](https://github.com/imsun/gitment)~~，升级NexT v7.2.0之后选择了[gitalk](https://gitalk.github.io/)
+
+### 参考资料
+1. [hexo搭建个人博客--NexT主题优化](https://segmentfault.com/a/1190000013660164)
+2. [搭建hexo+next博客并把项目主页放在上面](https://jinnsjj.github.io/uncategorized/build-projects-page/)
