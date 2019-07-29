@@ -178,8 +178,6 @@ public class Student {
 
 从此再也不用先new一个实例然后挨个赋值啦，尤其对那些属性超级多的对象，或者创建实例时有些属性是可选的，写起来更是简洁。
 
-[demo](https://github.com/eEricZeng/demo/tree/pattern-builder)
-
 ### 改造builder模式要点
 
 -   静态内部类
