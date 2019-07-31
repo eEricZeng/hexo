@@ -12,6 +12,7 @@ tags:
   - yaml
   - yml
   - spring
+  - java
 ---
 ## 问题重现
 某不知名springboot小项目，application.properties文件：

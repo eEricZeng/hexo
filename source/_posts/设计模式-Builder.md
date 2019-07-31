@@ -6,6 +6,7 @@ tags:
   - 设计模式
   - builder
   - pattern
+  - java
 ---
 
 Builder Pattern：中文译名为“[生成器模式][1]”、“建造模式”。

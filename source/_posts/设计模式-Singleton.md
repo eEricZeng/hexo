@@ -6,6 +6,7 @@ tags:
   - 设计模式
   - singleton
   - pattern
+  - java
 ---
 
 ## 线程安全
