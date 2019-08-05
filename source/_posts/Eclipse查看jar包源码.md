@@ -12,7 +12,7 @@ date: 2019-07-31 19:50:36
 ---
 
 
-还在使用Eclipse的同学真是伤不起，点开一个类报一个**Source not fournd**。两步完全解决查看jar源码的问题。
+还在使用Eclipse的同学真是伤不起，点开一个未知类报一个**Source not fournd**。两步完全解决查看jar源码的问题。
 
 ## Maven配置
 
