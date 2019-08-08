@@ -42,7 +42,11 @@ java -jar jim-server-demo-2.6.0v20190114-RELEASE.jar
 jim-server-demo-2.6.0.v20190114-RELEASE.jar中没有主清单属性
 ```
 
-打开jar包里的META-INF/MANIFEST.MF文件会发现缺失启动类。解决办法是在pom里添加maven-jar-plugin/maven-dependency-plugin两个插件：
+打开jar包里的META-INF/MANIFEST.MF文件会发现缺失启动类。解决办法是在pom里添加插件：
+
+### jar/dependency插件
+
+配置如下：
 
 ```xml
 <plugin>
@@ -81,8 +85,42 @@ jim-server-demo-2.6.0.v20190114-RELEASE.jar中没有主清单属性
 再次启动就可以啦：
 
 ```sh
-java -jar java -jar jim-server-demo-2.6.0.v20190114-RELEASE.jar
+java -jar jim-server-demo-2.6.0.v20190114-RELEASE.jar
 ```
+
+这样使用有个限制，拷贝jar包时需要带lib文件夹。
+
+### assembly插件
+
+配置如下：
+
+```xml
+<plugin>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <configuration>
+        <archive>
+            <manifest>
+            <mainClass>org.jim.server.demo.ImServerDemoStart</mainClass>
+            </manifest>
+        </archive>
+        <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+    </configuration>
+    <!--下面是为了使用 mvn package命令，如果不加则使用mvn assembly-->
+    <executions>
+        <execution>
+            <id>make-assemble</id>
+            <phase>package</phase>
+            <goals>
+                <goal>single</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+mvn打包后生成jim-server-demo-2.6.0.v20190114-RELEASE.jar和jim-server-demo-2.6.0.v20190114-RELEASE-jar-with-dependencies.jar两个jar包，后面那个包将依赖的jar一起打包，任何位置直接使用java -jar即可。
 
 ## IDE启动
 
@@ -105,3 +143,4 @@ public class JimStarter implements CommandLineRunner {
 ## 参考资料
 
 1.  [jar包中META-INF文件作用](https://blog.csdn.net/liuxiao723846/article/details/79364922 "CSDN")
+2.  [java -cp & java jar的区别](https://www.cnblogs.com/klb561/p/10513575.html)
