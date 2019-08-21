@@ -11,7 +11,7 @@ date: 2019-07-22 13:07:40
 ## 添加上游仓库
 查看远程分支状态：
 ```bash
-git remove -v
+git remote -v
 ```
 ![git remote -v](https://raw.githubusercontent.com/eEricZeng/imgbed/master/20190722112159.png)
 添加需要同步的上游仓库：
