@@ -1,6 +1,8 @@
 ---
 title: jvisualvm远程连接Tomcat
-categories: java
+categories:
+  - java
+  - jvm
 tags:
   - java
   - jvm
@@ -10,7 +12,6 @@ tags:
 date: 2019-09-20 19:03:45
 ---
 
-
 jvisualvm远程连接有两种方式：jmx和jstatd。
 
 ## JMX
@@ -18,7 +19,7 @@ jvisualvm远程连接有两种方式：jmx和jstatd。
 需要在服务器上修改Tomcat的启动参数，打开$TOMCAT_HOME/bin/catalina.sh，在文件中添加如下参数：
 
 ```bash
-JAVA_OPTS="$JAVA_OPTS
+CATALINA_OPTS="$CATALINA_OPTS
 -Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.port=8777
 -Dcom.sun.management.jmxremote.rmi.port=8777
@@ -28,6 +29,12 @@ JAVA_OPTS="$JAVA_OPTS
 ```
 
 其中，192.168.1.110是部署Tomcat的服务器地址。然后我们在本地启动jvisualvm，右击导航栏的“远程”->"添加远程主机"，输入远程主机IP——以“192.168.1.110”为例，右击远程主机“192.168.1.110”->“添加JMX连接”，输入端口号8777，勾选不要求SSL连接，这里没有使用安全凭证，因此也不需要勾选安全凭证，点击“确定”进行连接。
+
+**注意：**使用CATALINA_OPTS，而不要使用JAVA_OPTS，使用JAVA_OPTS在关闭Tomcat时会出现如下错误导致Tomcat无法关闭：
+
+```bash
+Error: JMX connector server communication error: service:jmx:rmi://localhost.localdomain:8777
+```
 
 **然而**，如果JMX没有缺点也就不需要使用第二种方法了。JMX无法使用VisualGC插件，这个真的无法忍受，只能用下面这种方法进行连接。
 
@@ -49,7 +56,9 @@ vim jstatd.all.policy
 
 运行jstatd工具：
 
-    jstatd -J-Djava.security.policy=jstatd.all.policy -J-Djava.rmi.server.hostanme=192.168.1.110 &
+```bash
+jstatd -J-Djava.security.policy=jstatd.all.policy -J-Djava.rmi.server.hostname=192.168.1.110 &
+```
 
 以上默认端口是1099，若需要修改可以添加-p参数进行制定。
 
