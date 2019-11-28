@@ -1,6 +1,5 @@
 ---
 title: J-IM问题及解决方案(持续更新)
-date:
 categories: 即时通讯
 tags:
   - 即时通讯
@@ -8,7 +7,9 @@ tags:
   - J-IM
   - t-io
   - java
+date: 
 ---
+
 
 ### ConstructorAccessor/FieldAccessor类飘红
 

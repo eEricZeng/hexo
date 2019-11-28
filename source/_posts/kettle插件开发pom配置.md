@@ -193,3 +193,4 @@ mvn install:install-file -Dfile=./swt-6.1.0.1-196.jar -DgroupId=org.pentaho.di -
 2.  [Apache install:install-file](http://maven.apache.org/plugins/maven-install-plugin/install-file-mojo.html "http&#x3A;//maven.apache.org/plugins/maven-install-plugin/install-file-mojo.html")
 3.  [Maven安装jar文件到本地仓库](https://www.cnblogs.com/xguo/archive/2013/06/04/3117894.html "https&#x3A;//www.cnblogs.com/xguo/archive/2013/06/04/3117894.html")
 4.  [Maven中的几个重要概念(二)：lifecycle, phase and goal](https://blog.csdn.net/OnlyQi/article/details/6801318 "https&#x3A;//blog.csdn.net/OnlyQi/article/details/6801318")
+5.  [Maven 生命周期](https://www.jianshu.com/p/fd43b3d0fdb0 "https&#x3A;//www.jianshu.com/p/fd43b3d0fdb0")
